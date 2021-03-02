@@ -19,6 +19,13 @@ if (!isset($_SESSION['user_login'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script defer src="/your-path-to-fontawesome/js/brands.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css">
+    <!-- js link -->
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap5.min.js"></script>
+    <script src="../js/script.js"></script>
 
     <title>SMS</title>
 </head>
@@ -50,135 +57,49 @@ if (!isset($_SESSION['user_login'])) {
 
             <div class="col-sm-3">
                 <div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    <a href="index.php?page=dashboard" type="button" class="list-group-item list-group-item-action active" aria-current="true">
                         Dashboard
-                    </button>
-                    <button type="button" class="list-group-item list-group-item-action">Add Student</button>
-                    <button type="button" class="list-group-item list-group-item-action">All Student</button>
-                    <button type="button" class="list-group-item list-group-item-action">All Users</button>
+                    </a>
+                    <a href="index.php?page=add-student" type="button" class="list-group-item list-group-item-action">Add Student</a>
+                    <a href="index.php?page=all-student" type="button" class="list-group-item list-group-item-action">All Student</a>
+                    <a href="index.php?page=add-user" type="button" class="list-group-item list-group-item-action">All Users</a>
 
                 </div>
             </div>
             <div class="col-sm-9">
                 <div class="content">
-                    <h2 class="text-primary">Dashboard <small>Statistics Overview </small></h2>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                        </ol>
-                    </nav>
 
-                    <div class="row">
+                    <?php 
 
-                        <div class="col-sm-4 border border-5">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            test
-                                        </div>
-                                        <div class="col-xs-9">
-                                            <div class="pull-right"> <a href="#"> All Students</a></div>
-                                            <div class="pull-right">10 </div>
+                    
 
-                                        </div>
+                    if(isset($_GET['page'])){
+                        $page = $_GET['page'].'.php';
 
-                                    </div>
+                    } else{
+                        $page = "dashboard.php";
+                    }
 
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- 2ndbox -->
-                        <div class="col-sm-4 border border-5 ms-4 ">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            test
-                                        </div>
-                                        <div class="col-xs-9">
-                                            <div class="pull-right"> <a href="#"> All Students</a></div>
-                                            <div class="pull-right">10 </div>
-
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- 2nd box end -->
-
-                    </div>
-
-                    <hr />
-                    <h3>New Students</h3>
-                    <table class="table" >
-                        <th>
-
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Roll</th>
-                                <th>City</th>
-                                <th>Contact</th>
-                            </tr>
-
-                        </th>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Sagor</td>
-                                <td>16115</td>
-                                <td>Dhaka</td>
-                                <td>01743107750</td>
-                                
-                            </tr>
-
-                        </tbody>
-                        <tbody>
-                            <tr>
-                                <td>2</td>
-                                <td>Mahmud</td>
-                                <td>15115</td>
-                                <td>Chittagong</td>
-                                <td>015542689</td>
-                                
-                            </tr>
-
-                        </tbody>
-                        <tbody>
-                            <tr>
-                                <td>3</td>
-                                <td>Kamal</td>
-                                <td>14265</td>
-                                <td>Khulna</td>
-                                <td>01658978</td>
-                                
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
+                    // require_once $page;
+                    if(file_exists($page)){
+                        require_once $page;
+                    }else{
+                        echo '<h2>File not found</h2>';
+                    }
+                    
+                    
+                    ?>
 
                 </div>
+
             </div>
 
         </div>
 
-    </div>
 
-
-    <footer class="text-center">
+        <!-- <footer class="text-center">
         <p>Copyrright &copy; ALL Rights Reserved Student Management System </p>
-    </footer>
+    </footer> -->
 </body>
 
 </html>
